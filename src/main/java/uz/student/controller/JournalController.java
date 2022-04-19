@@ -22,12 +22,4 @@ public class JournalController {
     public List<JournalDto> getJournal(){
         return journalService.getJournal();
     }
-
-    public String getDta(){
-        return "gt";
-    }
-
-
-
-
 }
