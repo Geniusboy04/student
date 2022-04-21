@@ -2,8 +2,6 @@ package uz.student.service;
 
 import org.springframework.stereotype.Service;
 import uz.student.dto.StudentDto;
-import uz.student.model.StudentEntity;
-
 import java.util.List;
 
 @Service
