@@ -2,7 +2,6 @@ package uz.student.service.impl;
 
 
 import lombok.AllArgsConstructor;
-import  org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.student.dto.JournalDto;
@@ -26,6 +25,14 @@ public class JournalServiceImpl implements JournalService {
         List<JournalEntity> journalEntities = journalRepository.findAll();
         return journalEntities.stream().map(JournalEntity::asDto).collect(Collectors.toList());
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<JournalDto> getSmartStudent() {
+        List<JournalEntity> journalEntities= journalRepository.findAll();
+            return journalEntities.stream().map(JournalEntity::asDto).collect(Collectors.toList());
+    }
+
 
     @Override
     @Transactional(readOnly = true)

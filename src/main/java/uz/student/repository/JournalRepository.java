@@ -8,6 +8,4 @@ import uz.student.model.JournalEntity;
 
 @Repository
 public interface JournalRepository extends JpaRepository<JournalEntity,Long> {
-
-
 }

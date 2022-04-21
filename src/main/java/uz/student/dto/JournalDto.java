@@ -13,8 +13,5 @@ public class JournalDto extends BaseDto {
 
     private CourseDto course;
 
-    private SubjectDto subject;
-
-    private MarkDto mark;
-
+    private Long grade;
 }

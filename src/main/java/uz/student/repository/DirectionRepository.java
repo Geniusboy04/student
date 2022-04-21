@@ -6,5 +6,4 @@ import uz.student.model.DirectionEntity;
 
 @Repository
 public interface DirectionRepository extends JpaRepository<DirectionEntity, Long> {
-
 }

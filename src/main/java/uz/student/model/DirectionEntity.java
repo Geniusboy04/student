@@ -19,8 +19,6 @@ public class DirectionEntity extends BaseEntity {
     @Column(name = "code",  length = 10 )
     private String code;
 
-    @Column(name = "groups",  length = 25 )
-    private String groups;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "faculty_id")
@@ -38,7 +36,6 @@ public class DirectionEntity extends BaseEntity {
         DirectionDto dto = new DirectionDto();
          dto.setId(getId());
         dto.setName(getName());
-        dto.setCode(getCode());
         dto.setFaculty(getFaculty().asDto());
         return dto;
     }
