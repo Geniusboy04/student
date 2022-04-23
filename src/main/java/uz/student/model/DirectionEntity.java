@@ -19,24 +19,11 @@ public class DirectionEntity extends BaseEntity {
     @Column(name = "code",  length = 10 )
     private String code;
 
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "faculty_id")
-    private FacultyEntity faculty;
-
-    public DirectionDto asOnlyDirectionDto(){
+    public DirectionDto asDto(){
         DirectionDto dto = new DirectionDto();
         dto.setId(getId());
         dto.setName(getName());
         dto.setCode(getCode());
-        return dto;
-    }
-
-    public DirectionDto asDto(){
-        DirectionDto dto = new DirectionDto();
-         dto.setId(getId());
-        dto.setName(getName());
-        dto.setFaculty(getFaculty().asDto());
         return dto;
     }
 }

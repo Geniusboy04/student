@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.student.dto.JournalDto;
 import uz.student.dto.StudentDto;
+import uz.student.model.JournalEntity;
 import uz.student.service.JournalService;
 
 import java.util.List;
@@ -39,7 +40,4 @@ public class JournalController {
         journalService.delete(id);
         return ResponseEntity.ok().body("Deleted");
     }
-
-
-
 }

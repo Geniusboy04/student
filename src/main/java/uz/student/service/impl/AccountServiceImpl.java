@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import uz.student.dto.AccountDto;
 import uz.student.enums.Status;
 import uz.student.model.AccountEntity;
-import uz.student.model.StudentEntity;
 import uz.student.repository.AccountRepository;
 import uz.student.service.AccountService;
 
@@ -33,6 +32,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional
     public void edit(AccountDto account) {
         AccountEntity accountEntity;
         if(account.getId() == null){
@@ -48,8 +48,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AccountDto getOne(Long id) {
         AccountEntity account = accountRepository.getById(id);
         return account.asDto();
     }
 }
+
+

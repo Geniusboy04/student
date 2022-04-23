@@ -2,7 +2,6 @@ package uz.student.service;
 
 
 import  org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import uz.student.dto.JournalDto;
 
 import java.util.List;
@@ -19,6 +18,7 @@ public interface JournalService {
     void save(JournalDto journal);
 
     void delete(Long id);
+
 
 
 

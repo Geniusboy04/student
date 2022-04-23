@@ -32,8 +32,9 @@ public class DirectionServiceImpl implements DirectionService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<DirectionDto> getOnlyDirection() {
         List<DirectionEntity> directionEntityList = directionRepository.findAll();
-        return directionEntityList.stream().map(DirectionEntity::asOnlyDirectionDto).collect(Collectors.toList());
+        return directionEntityList.stream().map(DirectionEntity::asDto).collect(Collectors.toList());
     }
 }
