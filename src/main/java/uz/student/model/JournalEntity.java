@@ -17,9 +17,12 @@ public class JournalEntity extends BaseEntity {
     private StudentEntity student;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "direction_id")
+    private DirectionEntity direction;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private CourseEntity course;
-
 
     @Column(name = "grade")
     private Long grade;

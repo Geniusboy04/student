@@ -12,22 +12,14 @@ public interface JournalService {
 
     List<JournalDto> getJournal();
 
-
     List<JournalDto> getSmartStudent();
 
     JournalDto getById(Long id);
-//
-//    List<JournalDto> search(String name);
-//
-//    List<JournalDto> sortName();
-//
-//    List<JournalDto> sortSurname();
-//
-//    List<JournalDto> sortCourse();
-//
-//    List<JournalDto> sortMark();
-//
-//    List<JournalDto> sortDirection();
+
+    void save(JournalDto journal);
+
+    void delete(Long id);
+
 
 
 

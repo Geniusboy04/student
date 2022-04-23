@@ -29,7 +29,7 @@ public class JournalServiceImpl implements JournalService {
     @Override
     @Transactional(readOnly = true)
     public List<JournalDto> getSmartStudent() {
-        List<JournalEntity> journalEntities= journalRepository.findAll();
+        List<JournalEntity> journalEntities = journalRepository.getBy();
             return journalEntities.stream().map(JournalEntity::asDto).collect(Collectors.toList());
     }
 
@@ -39,6 +39,26 @@ public class JournalServiceImpl implements JournalService {
     public JournalDto getById(Long id) {
         JournalEntity journalEntity = journalRepository.getById(id);
         return journalEntity.asDto();
+    }
+
+    @Override
+    public void save(JournalDto journal) {
+        JournalEntity journalEntity;
+        if(journal.getId() == null){
+            journalEntity = new JournalEntity();
+        }else {
+            journalEntity = journalRepository.getById(journal.getId());
+        }
+        journalEntity.getStudent().setFirstName(journal.getStudent().getFirstName());
+        journalEntity.getStudent().setLastName(journal.getStudent().getLastName());
+        journalEntity.getDirection().setCode(journal.getDirection().getCode());
+        journalEntity.getCourse().setCourse(journal.getCourse().getCourse());
+        journalRepository.save(journalEntity);
+    }
+
+    @Override
+    public void delete(Long id) {
+        journalRepository.deleteById(id);
     }
 
 //    @Override

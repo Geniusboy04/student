@@ -30,4 +30,10 @@ public class DirectionServiceImpl implements DirectionService {
         List<DirectionEntity> direction = directionRepository.findAll();
         return direction.stream().map(DirectionEntity::asDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<DirectionDto> getOnlyDirection() {
+        List<DirectionEntity> directionEntityList = directionRepository.findAll();
+        return directionEntityList.stream().map(DirectionEntity::asOnlyDirectionDto).collect(Collectors.toList());
+    }
 }

@@ -19,10 +19,16 @@ public class DirectionController {
 
 
     @GetMapping("directions")
-    List<DirectionDto> getAllDirection(){
+    List<DirectionDto> getAllFacultyDirection(){
         return directionService.getList();
     }
-//
+
+    @GetMapping("selection")
+    List<DirectionDto> getAllDirection(){
+        return directionService.getOnlyDirection();
+    }
+
+
 //    @GetMapping("/get/{id}")
 //    DirectionDto get(@PathVariable Long id){
 //        return directionService.get(id);

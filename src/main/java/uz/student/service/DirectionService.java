@@ -13,4 +13,6 @@ public interface DirectionService {
 
     List<DirectionDto> getList();
 
+    List<DirectionDto> getOnlyDirection();
+
 }

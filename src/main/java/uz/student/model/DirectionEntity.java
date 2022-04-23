@@ -24,7 +24,7 @@ public class DirectionEntity extends BaseEntity {
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 
-    public DirectionDto asJournalDto(){
+    public DirectionDto asOnlyDirectionDto(){
         DirectionDto dto = new DirectionDto();
         dto.setId(getId());
         dto.setName(getName());

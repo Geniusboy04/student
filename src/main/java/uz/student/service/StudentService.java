@@ -17,7 +17,6 @@ public interface StudentService {
 
     List<StudentDto> searchByName(String name);
 
-//    List<StudentDto> findByName(String firstName);
 
 //    List<StudentDto> sortName();
 //
