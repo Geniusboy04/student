@@ -2,6 +2,9 @@ package uz.student.service.impl;
 
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.student.dto.JournalDto;
@@ -9,7 +12,6 @@ import uz.student.model.JournalEntity;
 import uz.student.repository.JournalRepository;
 import uz.student.service.JournalService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,9 +24,8 @@ public class JournalServiceImpl implements JournalService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<JournalDto> getJournal()  {
-        List<JournalEntity> journalEntities = journalRepository.findAll();
-        return journalEntities.stream().map(JournalEntity::asDto).collect(Collectors.toList());
+    public double getCountOfPages(){
+        return journalRepository.countOfPages();
     }
 
     @Override
@@ -62,5 +63,19 @@ public class JournalServiceImpl implements JournalService {
     @Transactional
     public void delete(Long id) {
         journalRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAll(List<JournalEntity> journalEntities) {
+        journalRepository.deleteAll(journalEntities);
+    }
+
+    @Override
+    @Transactional
+    public List<JournalDto> findPaginated(int pageNo, int pageSize) {
+        Pageable paging = PageRequest.of(pageNo, pageSize);
+        Page<JournalEntity> pagedResult = journalRepository.findAll(paging);
+        return pagedResult.stream().map(JournalEntity::asDto).collect(Collectors.toList());
     }
 }

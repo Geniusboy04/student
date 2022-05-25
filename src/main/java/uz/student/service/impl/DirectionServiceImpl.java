@@ -5,6 +5,7 @@ import  org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import uz.student.dto.DirectionDto;
 import uz.student.model.DirectionEntity;
+import uz.student.model.StudentEntity;
 import uz.student.repository.DirectionRepository;
 import uz.student.service.DirectionService;
 
@@ -36,5 +37,19 @@ public class DirectionServiceImpl implements DirectionService {
     public List<DirectionDto> getOnlyDirection() {
         List<DirectionEntity> directionEntityList = directionRepository.findAll();
         return directionEntityList.stream().map(DirectionEntity::asDto).collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void save(DirectionDto direction) {
+        DirectionEntity directionEntity;
+        if(direction.getId() == null){
+            directionEntity = new DirectionEntity();
+        }else {
+            directionEntity = directionRepository.getById(direction.getId());
+        }
+        directionEntity.setName(direction.getName());
+        directionEntity.setCode(direction.getCode());
+        directionRepository.save(directionEntity);
     }
 }

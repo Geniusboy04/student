@@ -15,4 +15,6 @@ public interface DirectionService {
 
     List<DirectionDto> getOnlyDirection();
 
+    void save(DirectionDto direction);
+
 }

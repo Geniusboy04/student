@@ -1,9 +1,8 @@
 package uz.student.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import uz.student.dto.DirectionDto;
 import uz.student.service.DirectionService;
 
@@ -26,6 +25,12 @@ public class DirectionController {
     @GetMapping("selection")
     List<DirectionDto> getAllDirection(){
         return directionService.getOnlyDirection();
+    }
+
+    @PostMapping("add-direction")
+    ResponseEntity<?> save(@RequestBody DirectionDto direction){
+        directionService.save(direction);
+        return ResponseEntity.ok().body("Saved");
     }
 
 

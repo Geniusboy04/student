@@ -3,13 +3,14 @@ package uz.student.service;
 
 import  org.springframework.stereotype.Service;
 import uz.student.dto.JournalDto;
+import uz.student.model.JournalEntity;
 
 import java.util.List;
 
 @Service
 public interface JournalService {
 
-    List<JournalDto> getJournal();
+    double getCountOfPages();
 
     List<JournalDto> getSmartStudent();
 
@@ -19,7 +20,9 @@ public interface JournalService {
 
     void delete(Long id);
 
+    void deleteAll(List<JournalEntity> journal);
 
+    List<JournalDto> findPaginated(int pageNo, int pageSize);
 
 
 

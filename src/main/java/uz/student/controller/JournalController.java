@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.student.dto.JournalDto;
-import uz.student.dto.StudentDto;
 import uz.student.model.JournalEntity;
 import uz.student.service.JournalService;
 
@@ -19,9 +18,9 @@ public class JournalController {
 
     private final JournalService journalService;
 
-    @GetMapping("/journal")
-    public List<JournalDto> getJournal(){
-        return journalService.getJournal();
+    @GetMapping("/count-of-pages")
+    public double getCountOfStudents(){
+        return journalService.getCountOfPages();
     }
 
     @GetMapping("/smart-student")
@@ -39,5 +38,18 @@ public class JournalController {
     ResponseEntity<?> delete(@PathVariable("id") Long id){
         journalService.delete(id);
         return ResponseEntity.ok().body("Deleted");
+    }
+
+    @PostMapping("/deleteAll")
+    public String deleteAll(@RequestBody List<JournalEntity> journalEntities) {
+        journalService.deleteAll(journalEntities);
+        return "All Students deleted successfully";
+    }
+
+    @GetMapping("/journal/{pageNo}/{pageSize}")
+    public List<JournalDto> getPaginatedCountries(@PathVariable int pageNo,
+                                                  @PathVariable int pageSize) {
+
+        return journalService.findPaginated(pageNo, pageSize);
     }
 }

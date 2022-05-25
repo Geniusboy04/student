@@ -19,7 +19,6 @@ public class StudentServiceImpl implements StudentService {
 
     private final StudentRepository studentRepository;
 
-
     @Override
     @Transactional(readOnly = true)
     public List<StudentDto> getAllStudent(){
@@ -44,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public StudentDto get(Long id) {
         StudentEntity student = studentRepository.getById(id);
         return student.asDto();
